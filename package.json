@@ -1,8 +1,8 @@
 {
   "name": "dexon-divip",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"api_version": "1.0.0",
-	"description": "DEXON DIVIP",
+	"description": "DEXON DIVIP-Pro",
 	"keywords": [
 		"Vision Mixer",
 		"Matrix"
@@ -23,7 +23,5 @@
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/bitfocus/companion-module-dexon-divip/issues"
-	},
-	"dependencies": {
 	}
 }

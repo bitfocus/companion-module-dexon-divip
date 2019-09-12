@@ -86,7 +86,7 @@ instance.prototype.config_fields = function () {
 		{
 			type: 'textinput',
 			id: 'port',
-			label: 'Target Port',
+			label: 'TCP Port',
 			width: 2,
 			default: 6464,
 			regex: self.REGEX_PORT
@@ -158,7 +158,7 @@ instance.prototype.actions = function(system) {
 
 		'login':
 		{
-			label: 'Login',
+			label: 'Force Login',
 			options: [{
 				type: 'text',
 				id: 'info_login',
@@ -196,7 +196,7 @@ instance.prototype.actions = function(system) {
 					type: 'dropdown',
 					id: 'recall_ack',
 					label: 'Need ACK:',
-					default: 'No',
+					default: 'Yes',
 					choices: [
 						{ id: 'Yes', label: 'Yes' },
 						{ id: 'No', label: 'No' },
@@ -238,20 +238,20 @@ instance.prototype.actions = function(system) {
 instance.prototype.action = function(action) {
 	var self = this;
 	var cmd;
-	var opt = action.options;
+	var login = '<setup version="1" > <username>' + self.config.user + '</username> <password>' + self.config.pass + '</password> <needack>Yes</needack> </setup> ';
 
 	switch(action.action) {
 
 		case 'login':
-			cmd = '<setup version="1" > <username>' + self.config.user + '</username> <password>' + self.config.pass + '</password> <needack>Yes</needack> </setup>';
+			cmd = login;
 			break;
 
 		case 'recall_layout':
-			cmd = '<recall_layout id="' + action.options.recall_id + '" advance="' + action.options.recall_advance + '" needack="' + action.options.recall_ack + '"/>';
+			cmd = login + '<recall_layout id="' + action.options.recall_id + '" advance="' + action.options.recall_advance + '" needack="' + action.options.recall_ack + '"/>';
 			break;
 
 		case 'switch_audio':
-			cmd = '<audio><connect input_id="' + action.options.switch_input_id + '" output_id="' + action.options.switch_output_id + '"/></audio>';
+			cmd = login + '<audio><connect input_id="' + action.options.switch_input_id + '" output_id="' + action.options.switch_output_id + '"/></audio>';
 			break;
 
 	}
